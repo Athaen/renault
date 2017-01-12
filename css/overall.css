@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+
+body{
+    padding-top: 7rem !important; /* Pour compenser la navbar fixed */
+    background: #eee !important;
+}
+
+/* Formulaire liste salariés */
+
+#selectMultiple{
+    height: 400px;
+}
