@@ -1,17 +1,13 @@
 /* formulaire planning */
 
-#planningTheoriqueForm{
-    padding-left: 0;
-}
-
-#planningTheoriqueForm div{
-    padding: 0;
-}
-
 #planningTheoriqueForm select{
-    border-radius: 0 0 4px 4px;
+    border-radius: 0;
     border-top: 1px solid rgba(0,0,0,0.15);
-    padding: 0;
+}
+
+#selectMultiple{
+    height: 400px;
+    color: black;
 }
 
 /* datepicker */
@@ -20,10 +16,9 @@
     background: white;
     width: 100%;
     margin: auto;
-    padding: 0;
     border: 1px solid rgba(0,0,0,0.2);
     border-bottom: none;
-    border-radius: 4px 4px 0 0;
+    border-radius: 0;
 }
 
 #embeddingDatePicker > div > div > table{
@@ -34,4 +29,42 @@
     width: 14.6%;
     height: 34px;
     line-height: 34px;
+}
+
+.datepicker table tr td span.active.active{
+    background: #0275d8;
+    border-color: #0275d8;
+}
+
+/* tableau de résultat - jours du mois */
+
+#planningTheoriqueTable{
+    background: white;
+    border: 1px solid rgba(0,0,0,0.2)
+}
+
+#planningTheoriqueTable *{
+    text-align: center;
+}
+
+#planningTheoriqueTable th,
+#planningTheoriqueTable td{
+    border: none !important;
+}
+
+#planningTheoriqueTable th:not(:last-of-type), 
+#planningTheoriqueTable td:not(:last-of-type){
+    border-right: 1px solid rgba(0,0,0,0.1) !important;
+}
+
+#planningTheoriqueTable thead{
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    
+}
+
+#planningTheoriqueTable thead th{
+}
+
+#planningTheoriqueTable tbody td{
+    vertical-align: middle;
 }

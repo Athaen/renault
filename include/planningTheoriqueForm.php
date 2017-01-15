@@ -10,7 +10,7 @@
         
         $categories = $cManager->getList();
         
-        echo "<select id='selectMultiple' name='idSalarie' class='form-control' multiple='multiple'>";
+        echo "<select id='selectMultiple' name='idSalarie' class='form-control' size='2'>";
         
         foreach($categories as $categorie){
             echo "<optgroup label='" . mb_strtoupper($categorie->getLibelle(), "UTF-8") . "'>";
@@ -29,6 +29,4 @@
     </div>
 </div>
 
-<div class="col-xs-12">
-    <button id="singlebutton" name="validationForm" class="btn btn-block btn-primary">Valider</button>
-</div>
+<button id="singlebutton" name="validationForm" class="btn btn-block btn-outline-primary">Valider</button>

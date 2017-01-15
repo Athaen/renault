@@ -1,5 +1,7 @@
 <?php
 
+setlocale (LC_TIME, 'fr_FR.utf8','fra');
+
 define('basePath', realpath(dirname(__FILE__)));
 define('includePath', basePath . "/include");
 define('classePath', basePath . "/classe");

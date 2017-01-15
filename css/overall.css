@@ -1,13 +1,55 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
 
+/* Overall */
 
-body{
-    padding-top: 7rem !important; /* Pour compenser la navbar fixed */
-    background: #eee !important;
+*:not(i){
+    font-family: "Open Sans", sans-serif;
 }
 
-/* Formulaire liste salariés */
+body{
+    padding-top: 4.5rem; /* Pour compenser la navbar fixed */
+    background: #eee;
+}
 
-#selectMultiple{
-    height: 400px;
+.btn,
+.dropdown-menu,
+input,
+select,
+.input-group-addon{
+    border-radius: 0 !important;
+}
+
+.btn{
+    margin-bottom: 1rem;
+}
+.btn:hover{
+    cursor: pointer;
+}
+
+/* Barre de navigation */
+
+#overallNavbar{
+    background: #0275d8;
+    padding: .2rem 1rem;
+    min-height: 2.9rem;
+}
+
+.nav-link{
+    color: rgba(255,255,255,0.7);
+}
+
+.nav-link:hover{
+    color: white;
+}
+
+.nav-link:focus{
+    color: white
+}
+
+.navbar-brand{
+    color: white !important;
+}
+
+.dropdown-item{
+    color: black !important;
 }

@@ -1,35 +1,32 @@
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Renault Faurie</a>
-            </div>
+<nav id="overallNavbar" class="navbar navbar-toggleable-md fixed-top navbar-inverse">
+    <div class="container">
+        <button class="navbar-toggler navbar-toggler-center" type="button" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <?php if(isLogged()){ ?>
+        <!-- if logged -->
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <!-- navbar gauche -->
+            <a class="navbar-brand" href="#">Renault Faurie</a>
             
-            <?php if(isLogged()){ ?>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Planning <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="planningTheorique.php">Planning théorique</a></li>
-                            <li><a href="#">Planning réel</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">One more separated link</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Impression</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>  <?php echo ucfirst($_SESSION["auth"]->getPrenom()) . " " . strtoupper($_SESSION["auth"]->getNom()); ?></a></li>
-                    <li><a href="process/logout.php"><span class="glyphicon glyphicon-off" aria-hidden="true"></span>  Déconnexion</a></li>
-                </ul>
-            </div><!--/.nav-collapse -->
-            <?php } ?>
-        </div>
-    </nav> <!-- /fixed navbar -->
+            <div class="navbar-nav mr-auto">
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" >Planning</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="planningTheorique.php">Planning théorique</a>
+                        <a class="dropdown-item" href="#">Planning réel</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Séparateur</a>
+                    </div>
+                </div>
+                <a class="nav-item nav-link" href="#">Impression</span></a>
+            </div> <!-- /navbar gauche -->
+            <!-- navbar droite -->
+            <div class="navbar-nav my-auto">
+                    <a class="nav-item nav-link" href="#"><i class="fa fa-user-circle fa-lg" aria-hidden="true"></i>  <?php echo ucfirst($_SESSION["auth"]->getPrenom()) . " " . strtoupper($_SESSION["auth"]->getNom()); ?></a>
+                    <a class="nav-item nav-link" href="process/logout.php"><i class="fa fa-window-close fa-lg" aria-hidden="true"></i>  Déconnexion</a>
+            </div> <!-- /navbar droite -->
+        </div> <!-- /if logged -->
+        <?php } ?>
+    </div> <!-- /container -->
+</nav>
