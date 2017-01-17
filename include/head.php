@@ -6,3 +6,6 @@
 
 
 <link rel="stylesheet" href="css/overall.css"/>
+
+
+<link rel="icon" href="img/favicon.ico"/>

@@ -1,6 +1,6 @@
 <?php
 
-class Autorisation{
+class TypeHeure{
     private
         $id,
         $libelle
@@ -26,7 +26,7 @@ class Autorisation{
     public function setId($id){
         $this->id = $id;
     }
-    
+        
     public function setLibelle($libelle){
         $this->libelle = $libelle;
     }

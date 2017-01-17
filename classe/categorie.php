@@ -6,12 +6,12 @@ class Categorie{
         $libelle
     ;
     
-    public function __construct($donnees){
-        $this->hydrate($donnees);
+    public function __construct($data){
+        $this->hydrate($data);
     }
     
-    public function hydrate(array $donnees){
-        foreach ($donnees as $key => $value){
+    public function hydrate(array $data){
+        foreach ($data as $key => $value){
             $method = 'set'.ucfirst($key);
             
             if (method_exists($this, $method)){

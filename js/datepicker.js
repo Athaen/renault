@@ -1,48 +1,46 @@
+$.fn.datepicker.dates.fr = {
+    days: ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"],
+    daysShort: ["dim.", "lun.", "mar.", "mer.", "jeu.", "ven.", "sam."],
+    daysMin: ["d", "l", "ma", "me", "j", "v", "s"],
+    months: ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"],
+    monthsShort: ["janv.", "févr.", "mars", "avril", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."],
+    today: "Aujourd'hui",
+    monthsTitle: "Mois",
+    clear: "Effacer",
+    weekStart: 1,
+    format: "dd/mm/yyyy"
+}
 
-$(document).ready(function() {
-    $('#embeddingDatePicker')
+$(function() {
+    
+    $("#embeddingDatePicker")
         .datepicker({
-            format: 'dd/mm/yyyy',
             startView: 1,
             minViewMode: 1,
-            language: "fr"
+            language: "fr",
         })
-        .on('changeDate', function(e) {
+        .on("changeDate", function() {
             // Set the value for the date input
-            $("#selectedDate").val($("#embeddingDatePicker").datepicker('getFormattedDate'));
-
-            // Revalidate it
-            $('#planningTheoriqueForm').formValidation('revalidateField', 'selectedDate');
-        });
-
-    $('#planningTheoriqueForm').formValidation({
-        framework: 'bootstrap',
-        icon: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-            name: {
-                validators: {
-                    notEmpty: {
-                        message: 'The name is required'
-                    }
-                }
-            },
-            selectedDate: {
-                // The hidden input will not be ignored
-                excluded: false,
-                validators: {
-                    notEmpty: {
-                        message: 'The date is required'
-                    },
-                    date: {
-                        format: 'MM/DD/YYYY',
-                        message: 'The date is not a valid'
-                    }
-                }
-            }
+            $("#selectedDate").val($("#embeddingDatePicker").datepicker("getFormattedDate"));
+        })
+    ;
+    
+    $("#selectedDate").attr("value", "");
+    
+    $("#validationPlanningForm").click(function() {
+        if($('#selectedDate').attr("value") == ''){
+            $("#embeddingDatePicker").popover("show");
+            
+            $("#embeddingDatePicker").on("shown.bs.popover", function(){
+                $("body").one("click", function(){
+                    $("#embeddingDatePicker").popover("hide");
+                });
+            });
+            
+            return false; 
+        }
+        else{
+            $(this).submit();
         }
     });
 });

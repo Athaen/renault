@@ -4,7 +4,7 @@ class Salarie{
     private
         $id,
         $categorie, // objet categorie
-        $autorisations, // collection d'objet autorisation
+        $autorisations, // collection d'objets autorisation
         $nom,
         $prenom,
         $mdp

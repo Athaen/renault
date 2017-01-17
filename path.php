@@ -13,6 +13,9 @@ require_once(includePath . "/db.php");
 require_once(classePath . "/salarieManager.php");
 require_once(classePath . "/categorieManager.php");
 require_once(classePath . "/autorisationManager.php");
+require_once(classePath . "/heureTheoriqueManager.php");
+require_once(classePath . "/heureReelManager.php");;
+require_once(classePath . "/typeHeureManager.php");
 
 require_once(fonctionPath . "/authentification.php");
 
