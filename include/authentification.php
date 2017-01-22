@@ -5,8 +5,8 @@ if(isset($_POST["nom"]) && isset($_POST["mdp"])){
         session_start();
     }
     
-    $sManager = new SalarieManager($db);
-    $salarie = $sManager->authentification($_POST["nom"], $_POST["mdp"]);
+    $saManager = new SalarieManager($db);
+    $salarie = $saManager->authentification($_POST["nom"], $_POST["mdp"]);
     
     if(isset($salarie)){
         $_SESSION["auth"] = $salarie;

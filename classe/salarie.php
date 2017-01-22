@@ -3,7 +3,7 @@
 class Salarie{
     private
         $id,
-        $categorie, // objet categorie
+        $service, // objet service
         $autorisations, // collection d'objets autorisation
         $nom,
         $prenom,
@@ -26,7 +26,7 @@ class Salarie{
     }
     
     public function getId(){ return $this->id; }
-    public function getCategorie(){ return $this->categorie; }
+    public function getService(){ return $this->service; }
     public function getAutorisations(){ return $this->autorisations; }
     public function getNom(){ return $this->nom; }
     public function getPrenom(){ return $this->prenom; }
@@ -36,8 +36,8 @@ class Salarie{
         $this->id = $id;
     }
     
-    public function setCategorie(Categorie $categorie){
-        $this->categorie = $categorie;
+    public function setService(Service $service){
+        $this->service = $service;
     }
     
     public function setAutorisations($autorisations){

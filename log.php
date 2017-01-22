@@ -22,7 +22,7 @@
         var_dump($_SESSION["auth"]);
         ?>
     </div> <!-- /container -->
-
+    
     <!-- scripts -->
     <?php require_once(includePath . "/scripts.php"); ?>
     <!-- /scripts -->

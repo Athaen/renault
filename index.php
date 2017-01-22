@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <?php
     require_once("path.php");
@@ -7,16 +8,19 @@
     require_once(includePath . "/authentification.php");
     ?>
     
-    <link rel="stylesheet" href="css/index.css"/>
+    <link rel="stylesheet" href="css/index.css" />
     
     <title>Authentification</title>
 </head>
+
 <body>
     <?php require_once(includePath . "/navbar.php"); ?>
     
+    <!-- content container-->
     <div class="container">
         <?php require_once(includePath . "/flash.php"); ?>
         
+        <!-- formulaire de connexion -->
         <form action="index.php" method="post" class="form-signin">
             <h2 class="form-signin-heading text-center">Authentification</h2>
             
@@ -25,12 +29,15 @@
             
             <button class="btn btn-md btn-outline-primary btn-block" type="submit">Valider</button>
         </form>
-    </div> <!-- /container -->
+        <!-- /formulaire de connexion -->
+    </div>
+    <!-- /content container -->
     
     <?php require_once(includePath . "/footer.php"); ?>
     
-    <!-- Scripts -->
+    <!-- scripts -->
     <?php require_once(includePath . "/scripts.php"); ?>
-    <!-- End Scripts -->
+    <!-- /scripts -->
 </body>
+
 </html>

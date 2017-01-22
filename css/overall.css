@@ -26,6 +26,11 @@ select,
     cursor: pointer;
 }
 
+.cadre{
+    background: white;
+    border: 1px solid rgba(0,0,0,0.2);
+}
+
 /* Barre de navigation */
 
 #overallNavbar{
@@ -48,6 +53,11 @@ select,
 
 .navbar-brand{
     color: white !important;
+}
+
+.dropdown-header{
+    color: #0275d8;
+    font-weight: 700;
 }
 
 .dropdown-item{

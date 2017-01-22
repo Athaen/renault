@@ -1,13 +1,12 @@
 /* formulaire planning */
 
-#planningForm select{
-    border-radius: 0;
-    border-top: 1px solid rgba(0,0,0,0.15);
+#planningForm > div {
+    padding: 0;
 }
 
-#selectMultiple{
-    height: 400px;
-    color: black;
+#planningForm select{
+    border-radius: 0;
+    border-top: 1px solid rgba(0,0,0,0.1);
 }
 
 /* datepicker */
@@ -38,11 +37,6 @@
 
 /* tableau de résultat - jours du mois */
 
-#planningTable{
-    background: white;
-    border: 1px solid rgba(0,0,0,0.2)
-}
-
 #planningTable *{
     text-align: center;
 }
@@ -68,4 +62,9 @@
 
 .planningBg{
     background: rgba(0,0,0,0.15) !important;
+}
+
+.applyToNextWeek{
+    color: #0275d8;
+    cursor: pointer;
 }

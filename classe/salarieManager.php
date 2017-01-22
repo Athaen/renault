@@ -15,12 +15,12 @@ class SalarieManager{
     
     public function add(Salarie $salarie){
         $sql = $this->db->prepare('
-            INSERT INTO salarie(id, idCategorie, nom, prenom, mdp) 
-            VALUES(:id, :idCategorie, :nom, :prenom, :mdp)
+            INSERT INTO salarie(id, idService, nom, prenom, mdp) 
+            VALUES(:id, :idService, :nom, :prenom, :mdp)
         ');
         
         $sql->bindValue(':id', $salarie->getId());
-        $sql->bindValue(':idCategorie', $salarie->categorie->getId());
+        $sql->bindValue(':idService', $salarie->service->getId());
         $sql->bindValue(':nom', $salarie->getNom());
         $sql->bindValue(':prenom', $salarie->getPrenom());
         $sql->bindValue(':mdp', $salarie->getMdp());
@@ -31,11 +31,11 @@ class SalarieManager{
     public function update(Salarie $salarie){
         $sql = $this->db->prepare('
             UPDATE salarie 
-            SET idCategorie = :idCategorie, nom = :nom, prenom = :prenom, mdp = :mdp
+            SET idService = :idService, nom = :nom, prenom = :prenom, mdp = :mdp
             WHERE id = :id
         ');
         
-        $sql->bindValue(':idCategorie', $salarie->categorie->getId());
+        $sql->bindValue(':idService', $salarie->service->getId());
         $sql->bindValue(':nom', $salarie->getNom());
         $sql->bindValue(':prenom', $salarie->getPrenom());
         $sql->bindValue(':mdp', $salarie->getMdp());
@@ -56,9 +56,9 @@ class SalarieManager{
         $sql = $this->db->query('SELECT * FROM salarie WHERE valide = 1 AND id = '.$id);
         $data = $sql->fetch(PDO::FETCH_ASSOC);
         
-        $cManager = new CategorieManager($this->db);
-        $data["categorie"] = $cManager->get($data["idCategorie"]);
-        unset($data["idCategorie"]);
+        $seManager = new ServiceManager($this->db);
+        $data["service"] = $seManager->get($data["idService"]);
+        unset($data["idService"]);
         
         $aManager = new AutorisationManager($this->db);
         $data["autorisations"] = $aManager->getListBySalarie($id);
@@ -71,11 +71,11 @@ class SalarieManager{
         
         $sql = $this->db->query('SELECT * FROM salarie WHERE valide = 1 ORDER BY nom ');
         
-        $cManager = new CategorieManager($this->db);
+        $seManager = new ServiceManager($this->db);
         $aManager = new AutorisationManager($this->db);
         while ($data = $sql->fetch(PDO::FETCH_ASSOC)){        
-            $data["categorie"] = $cManager->get($data["idCategorie"]);
-            unset($data["idCategorie"]);
+            $data["service"] = $seManager->get($data["idService"]);
+            unset($data["idService"]);
             
             $data["autorisations"] = $aManager->getListBySalarie($data["id"]);
             
@@ -85,16 +85,16 @@ class SalarieManager{
         return $list;
     }
     
-    public function getListFromCategorie(Categorie $categorie){
+    public function getListFromService(Service $service){
         $list = [];
         
-        $sql = $this->db->query("SELECT * FROM salarie WHERE valide = 1 AND idCategorie = ".$categorie->getId()." ORDER BY nom ");
+        $sql = $this->db->query("SELECT * FROM salarie WHERE valide = 1 AND idService = ".$service->getId()." ORDER BY nom ");
         
-        $cManager = new CategorieManager($this->db);
+        $seManager = new ServiceManager($this->db);
         $aManager = new AutorisationManager($this->db);
         while ($data = $sql->fetch(PDO::FETCH_ASSOC)){        
-            $data["categorie"] = $cManager->get($data["idCategorie"]);
-            unset($data["idCategorie"]);
+            $data["service"] = $seManager->get($data["idService"]);
+            unset($data["idService"]);
             
             $data["autorisations"] = $aManager->getListBySalarie($data["id"]);
             
