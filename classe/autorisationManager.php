@@ -13,7 +13,7 @@ class AutorisationManager{
         $this->db= $db;
     }
     
-    public function add(Autorisation $autorisation){
+    public function add(Autorisations $autorisation){
         $sql = $this->db->prepare('
             INSERT INTO autorisation(id, libelle) 
             VALUES(:id, :libelle)
@@ -25,7 +25,7 @@ class AutorisationManager{
         $sql->execute();
     }
     
-    public function update(Autorisation $autorisation){
+    public function update(Autorisations $autorisation){
         $sql = $this->db->prepare("
             UPDATE autorisation
             SET libelle = :libelle
@@ -38,7 +38,7 @@ class AutorisationManager{
         $sql->execute();
     }
     
-    public function delete(Autorisation $autorisation){
+    public function delete(Autorisations $autorisation){
         $this->db->exec("
             UPDATE autorisation
             SET valide = 0
@@ -88,7 +88,7 @@ class AutorisationManager{
             ORDER BY id
         ");
         
-        while ($data = $sql->fetch(PDO::FETCH_ASSOC)){
+        while($data = $sql->fetch(PDO::FETCH_ASSOC)){
             $list[] = new Autorisation($data);
         }
         

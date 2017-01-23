@@ -15,7 +15,8 @@ body{
 .dropdown-menu,
 input,
 select,
-.input-group-addon{
+.input-group-addon,
+.card{
     border-radius: 0 !important;
 }
 

@@ -6,7 +6,7 @@
 
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <!-- navbar gauche -->
-            <a class="navbar-brand" href="#">Faurie Automobiles</a>
+            <a class="navbar-brand" href="#">Tulle Automobiles</a>
 
             <?php if(isLogged()){ ?>
 

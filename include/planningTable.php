@@ -71,7 +71,7 @@ for($i = 1; $i <= $diff; $i++){
                 <input type="hidden" name="id[]" value="<?php echo $id; ?>"/>
             </td>
             <td>
-                <div class="input-group">
+                <div class="input-group justify-content-center">
                     <input class="heure" name="heure[]" type="number" class="form-control" min="0" max="24" step="1" value="<?php echo $heureValue; ?>">
                     <span class="input-group-addon">h</span>
                     <input class="minute" name="minute[]" type="number" class="form-control" min="0" max="59" step="1" value="<?php echo $minuteValue; ?>">

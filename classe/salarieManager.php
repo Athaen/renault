@@ -15,17 +15,33 @@ class SalarieManager{
     
     public function add(Salarie $salarie){
         $sql = $this->db->prepare('
-            INSERT INTO salarie(id, idService, nom, prenom, mdp) 
-            VALUES(:id, :idService, :nom, :prenom, :mdp)
+            INSERT INTO salarie(idService, nom, prenom, mdp) 
+            VALUES(:idService, :nom, :prenom, :mdp)
         ');
         
-        $sql->bindValue(':id', $salarie->getId());
-        $sql->bindValue(':idService', $salarie->service->getId());
+        $sql->bindValue(':idService', $salarie->getService()->getId());
         $sql->bindValue(':nom', $salarie->getNom());
         $sql->bindValue(':prenom', $salarie->getPrenom());
         $sql->bindValue(':mdp', $salarie->getMdp());
         
         $sql->execute();
+        
+        // ajout en db dans la jointure des autorisations contenues dans la collection d'autorisation
+        if(!empty($salarie->getAutorisations())){
+            $idSalarie = $this->db->lastInsertId();
+            
+            foreach($salarie->getAutorisations() as $autorisation){
+                $sql = $this->db->prepare("
+                    INSERT INTO salarie_autorisation(idSalarie, idAutorisation)
+                    VALUES(:idSalarie, :idAutorisation)
+                ");
+                
+                $sql->bindValue(':idSalarie', $idSalarie);
+                $sql->bindValue(':idAutorisation', $autorisation->getId());
+                
+                $sql->execute();            
+            }            
+        }
     }
     
     public function update(Salarie $salarie){
@@ -88,7 +104,7 @@ class SalarieManager{
     public function getListFromService(Service $service){
         $list = [];
         
-        $sql = $this->db->query("SELECT * FROM salarie WHERE valide = 1 AND idService = ".$service->getId()." ORDER BY nom ");
+        $sql = $this->db->query("SELECT * FROM salarie WHERE valide = 1 AND idService = ". $service->getId() ." ORDER BY nom ");
         
         $seManager = new ServiceManager($this->db);
         $aManager = new AutorisationManager($this->db);
@@ -108,13 +124,14 @@ class SalarieManager{
         $salaries = $this->getList();
         
         foreach($salaries as $salarie){
+            $acces = false;
             foreach($salarie->getAutorisations() as $autorisation){
-                if($autorisation->getId() == 2){
+                if($autorisation->getId() == (2 or 1)){
                     $acces = true;
                 }
             }
             
-            if($salarie->getNom() == strtolower($nom) && $salarie->getMdp() == $mdp && isset($acces)){
+            if($salarie->getNom() == strtolower($nom) && $salarie->getMdp() == $mdp && $acces){
                 return $salarie;
             }
         }
