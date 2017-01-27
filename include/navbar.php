@@ -15,8 +15,10 @@
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Planning</a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="planningTheorique.php">Théorique</a>
-                        <a class="dropdown-item" href="planningReel.php">Réel</a>
+                        <a class="dropdown-item" href="planningTheorique.php">Planning théorique</a>
+                        <a class="dropdown-item" href="planningReel.php">Planning réel</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="report.php">Reports</a>
                     </div>
                 </div>
                 <!-- /planning dropdown-->
@@ -25,13 +27,9 @@
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Administration</a>
                     <div class="dropdown-menu">
-                        <h6 class="dropdown-header">Salariés</h6>
-                        <a class="dropdown-item" href="administrationSalarieAjout.php">Ajouter un salarié</a>
-                        <a class="dropdown-item" href="administrationSalarieGestion.php">Gérer les salariés</a>
+                        <a class="dropdown-item" href="administrationSalarie.php">Gestion des salariés</a>
                         <div class="dropdown-divider"></div>
-                        <h6 class="dropdown-header">Services</h6>
-                        <a class="dropdown-item" href="administrationServiceAjout.php">Ajouter un service</a>
-                        <a class="dropdown-item" href="administrationServiceGestion.php">Gérer les services</a>
+                        <a class="dropdown-item" href="administrationService.php">Gestion des services</a>
                     </div>
                 </div>
                 <!-- /gestion dropdwn -->

@@ -14,10 +14,10 @@ class SalarieManager{
     }
     
     public function add(Salarie $salarie){
-        $sql = $this->db->prepare('
+        $sql = $this->db->prepare("
             INSERT INTO salarie(idService, nom, prenom, mdp) 
             VALUES(:idService, :nom, :prenom, :mdp)
-        ');
+        ");
         
         $sql->bindValue(':idService', $salarie->getService()->getId());
         $sql->bindValue(':nom', $salarie->getNom());
@@ -30,7 +30,7 @@ class SalarieManager{
         if(!empty($salarie->getAutorisations())){
             $idSalarie = $this->db->lastInsertId();
             
-            foreach($salarie->getAutorisations() as $autorisation){
+            foreach($salarie->getAutorisations() as $autorisation){                
                 $sql = $this->db->prepare("
                     INSERT INTO salarie_autorisation(idSalarie, idAutorisation)
                     VALUES(:idSalarie, :idAutorisation)
@@ -39,25 +39,52 @@ class SalarieManager{
                 $sql->bindValue(':idSalarie', $idSalarie);
                 $sql->bindValue(':idAutorisation', $autorisation->getId());
                 
-                $sql->execute();            
-            }            
+                $sql->execute();
+            }
         }
     }
     
     public function update(Salarie $salarie){
         $sql = $this->db->prepare('
-            UPDATE salarie 
-            SET idService = :idService, nom = :nom, prenom = :prenom, mdp = :mdp
+            UPDATE salarie
+            SET idService = :idService,
+                nom = :nom,
+                prenom = :prenom,
+                mdp = :mdp
             WHERE id = :id
         ');
         
-        $sql->bindValue(':idService', $salarie->service->getId());
+        $sql->bindValue(':idService', $salarie->getService()->getId());
         $sql->bindValue(':nom', $salarie->getNom());
         $sql->bindValue(':prenom', $salarie->getPrenom());
         $sql->bindValue(':mdp', $salarie->getMdp());
         $sql->bindValue(':id', $salarie->getId());
         
         $sql->execute();
+        
+        // update en db dans la jointure des autorisations contenues dans la collection d'autorisation
+        $sql = $this->db->prepare("
+            DELETE FROM salarie_autorisation
+            WHERE idSalarie = :idSalarie
+        ");
+        
+        $sql->bindValue(':idSalarie', $salarie->getId());
+        
+        $sql->execute();
+        
+        if(!empty($salarie->getAutorisations())){
+            foreach($salarie->getAutorisations() as $autorisation){                
+                $sql = $this->db->prepare("
+                    INSERT INTO salarie_autorisation(idSalarie, idAutorisation)
+                    VALUES(:idSalarie, :idAutorisation)
+                ");
+                
+                $sql->bindValue(':idSalarie', $salarie->getId());
+                $sql->bindValue(':idAutorisation', $autorisation->getId());
+                
+                $sql->execute();
+            }
+        }
     }
     
     public function delete(Salarie $salarie){
@@ -101,7 +128,7 @@ class SalarieManager{
         return $list;
     }
     
-    public function getListFromService(Service $service){
+    public function getListByService(Service $service){
         $list = [];
         
         $sql = $this->db->query("SELECT * FROM salarie WHERE valide = 1 AND idService = ". $service->getId() ." ORDER BY nom ");

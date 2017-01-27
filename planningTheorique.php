@@ -10,6 +10,7 @@
     ?>
     
     <link rel="stylesheet" href="css/planning.css" />
+    <link rel="stylesheet" href="css/datePicker.css" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
     
     <title>Planning théorique</title>

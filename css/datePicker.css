@@ -1,0 +1,26 @@
+#yearDatePicker > div,
+#yearMonthDatePicker > div{
+    background: white;
+    width: 100%;
+    margin: auto;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-bottom: none;
+    border-radius: 0;
+}
+
+#yearDatePicker > div > div > table,
+#yearMonthDatePicker > div > div > table{
+    width: 100%;
+}
+
+#yearDatePicker .month, #yearDatePicker .year,
+#yearMonthDatePicker .month, #yearMonthDatePicker .year{
+    width: 14.6%;
+    height: 34px;
+    line-height: 34px;
+}
+
+.datepicker table tr td span.active.active{
+    background: #0275d8 !important;
+    border-color: #0275d8 !important;
+}

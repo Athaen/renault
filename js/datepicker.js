@@ -13,7 +13,7 @@ $.fn.datepicker.dates.fr = {
 
 $(function() {
     
-    $("#embeddingDatePicker")
+    $("#yearMonthDatePicker")
         .datepicker({
             startView: 1,
             minViewMode: 1,
@@ -21,7 +21,20 @@ $(function() {
         })
         .on("changeDate", function() {
             // Set the value for the date input
-            $("#selectedDate").val($("#embeddingDatePicker").datepicker("getFormattedDate"));
+            $("#selectedDate").val($("#yearMonthDatePicker").datepicker("getFormattedDate"));
+        })
+    ;
+    
+    $("#yearDatePicker")
+        .datepicker({
+            startView: 2,
+            minViewMode: 2,
+            maxViewMode: 2,
+            language: "fr",
+        })
+        .on("changeDate", function() {
+            // Set the value for the date input
+            $("#selectedDate").val($("#yearDatePicker").datepicker("getFormattedDate"));
         })
     ;
     
@@ -29,11 +42,28 @@ $(function() {
     
     $("#validationPlanningForm").click(function() {
         if($('#selectedDate').attr("value") == ''){
-            $("#embeddingDatePicker").popover("show");
+            $("#yearMonthDatePicker").popover("show");
             
-            $("#embeddingDatePicker").on("shown.bs.popover", function(){
+            $("#yearMonthDatePicker").on("shown.bs.popover", function(){
                 $("body").one("click", function(){
-                    $("#embeddingDatePicker").popover("hide");
+                    $("#yearMonthDatePicker").popover("hide");
+                });
+            });
+            
+            return false; 
+        }
+        else{
+            $(this).submit();
+        }
+    });
+    
+    $("#validationReport").click(function() {
+        if($('#selectedDate').attr("value") == ''){
+            $("#yearDatePicker").popover("show");
+            
+            $("#yearDatePicker").on("shown.bs.popover", function(){
+                $("body").one("click", function(){
+                    $("#yearDatePicker").popover("hide");
                 });
             });
             

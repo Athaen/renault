@@ -40,8 +40,7 @@ class ServiceManager{
     
     public function delete(Service $service){
         $this->db->exec('
-            UPDATE service
-            SET valide = 0
+            DELETE FROM service
             WHERE id = ' . $service->getId()
         );
     }

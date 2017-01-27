@@ -79,8 +79,8 @@ class AutorisationManager{
         $list = [];
         
         $sql = $this->db->query("
-            SELECT A.*
-            FROM autorisation A
+            SELECT A.* 
+            FROM autorisation A 
             INNER JOIN salarie_autorisation SA ON A.id = SA.idAutorisation
             WHERE idSalarie = $id
             AND A.valide = 1

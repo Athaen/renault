@@ -16,7 +16,8 @@ body{
 input,
 select,
 .input-group-addon,
-.card{
+.card,
+.alert{
     border-radius: 0 !important;
 }
 
@@ -30,6 +31,35 @@ select,
 .cadre{
     background: white;
     border: 1px solid rgba(0,0,0,0.2);
+}
+
+.card-header{
+    font-weight: 700;
+}
+
+/* tableaux */
+
+table *{
+    text-align: center;
+}
+
+.table th,
+.table td{
+    border: none !important;
+}
+
+.table th:not(:last-of-type), 
+.table td:not(:last-of-type){
+    border-right: 1px solid rgba(0,0,0,0.1) !important;
+}
+
+.table thead{
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    
+}
+
+.table tbody td{
+    vertical-align: middle;
 }
 
 /* Barre de navigation */
@@ -63,4 +93,23 @@ select,
 
 .dropdown-item{
     color: black !important;
+}
+
+/* Onglets */
+
+.nav-tabs{
+    margin-bottom: 1rem;
+}
+
+.nav-tabs .nav-item{
+    margin-bottom: 0;
+}
+
+.nav-tabs .nav-link{
+    color: rgba(70,74,76,0.7);
+    border-radius: 0;
+}
+
+.nav-tabs .nav-link.active{
+    color: #464a4c;
 }

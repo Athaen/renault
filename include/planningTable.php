@@ -19,7 +19,7 @@ $diff = $selectedDate->diff($plusUnMois)->format("%a");
     <thead>
         <tr>
             <th>Date</th>
-            <th>Heures<htd>
+            <th>Heures</th>
             <th>Type</th>
         </tr>
     </thead>
@@ -64,7 +64,7 @@ for($i = 1; $i <= $diff; $i++){
         <tr <?php if($jourNum == 0 || $jourNum == 6){ echo "class='planningBg'"; } echo "id='$i'";?>>
             <td>
                 <?php if($jourNum == 1): ?>
-                <i class="applyToNextWeek fa fa-chevron-circle-down fa-lg" title="Dupliquer les heures sur la semaine suivante"></i>
+                <i class="applyToNextWeek fa fa-angle-double-down fa-lg" title="Dupliquer les heures sur la semaine suivante"></i>
                 <?php endif ?>
                 <?php echo ucfirst($jour) . " " . $numero . " " . $mois . " " . $annee; ?>
                 <input type="hidden" name="date[]" value="<?php echo $selectedDate->format("Y-m-d"); ?>"/>
