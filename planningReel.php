@@ -7,6 +7,13 @@
     require_once(includePath . "/head.php");
     
     authentificationRequise();
+    
+    if(isset($_POST["validationPlanningFormReel"]) && empty($_POST["selectedDate"])){
+        $_SESSION["flash"]["danger"] = "Vous devez sélectionner une date";
+        
+        header("Location: planningReel.php");
+        exit();
+    }
     ?>
     
     <link rel="stylesheet" href="css/planning.css" />
@@ -29,7 +36,7 @@
             <form id="planningForm" action="planningReel.php" method="post" class="col-sm-6 col-md-4">
                 <?php require_once(includePath . "/planningForm.php"); ?>
                     
-                <button id="validationPlanningForm" name="validationPlanningFormReel" class="btn btn-block btn-outline-primary">Valider</button>
+                <button name="validationPlanningFormReel" class="datepickerValidation btn btn-block btn-outline-primary">Valider</button>
             </form>
             <!-- /formulaire datepicker & salariés -->
             

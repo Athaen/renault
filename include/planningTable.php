@@ -34,24 +34,25 @@ for($i = 1; $i <= $diff; $i++){
     $salarie = $saManager->get($_POST["idSalarie"]);
     
     if(isset($_POST["validationPlanningFormTheorique"])){
-        $rt = "t";
+        $hr_ht_r = "ht";
     }
     elseif(isset($_POST["validationPlanningFormReel"])){
-        $rt = "r";
+        $hr_ht_r = "hr";
     }
     
-    $heure = $hManager->getBySalarieDate($salarie, $selectedDate, $rt);
-    
-    $id = null;
-    $heureValue = null;
-    $minuteValue = null;
-    $th = null;
+    $heure = $hManager->getBySalarieDate($salarie, $selectedDate, $hr_ht_r);
     
     if($heure){
         $id = $heure->getId();
         $heureValue = ltrim($heure->getDatetime()->format("G"), 0);
         $minuteValue = ltrim($heure->getDatetime()->format("i"), 0);
         $th = $heure->getTypeHeure();
+    }
+    else{    
+        $id = null;
+        $heureValue = null;
+        $minuteValue = null;
+        $th = null;
     }
     // /récupération des heures existantes en db
     

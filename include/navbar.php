@@ -19,6 +19,10 @@
                         <a class="dropdown-item" href="planningReel.php">Planning réel</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="report.php">Reports</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="heureTheorique.php">Heures théoriques</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Heures supplémentaires</a>
                     </div>
                 </div>
                 <!-- /planning dropdown-->

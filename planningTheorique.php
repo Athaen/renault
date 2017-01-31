@@ -7,6 +7,13 @@
     require_once(includePath . "/head.php");
     
     authentificationRequise();
+    
+    if(isset($_POST["validationPlanningFormTheorique"]) && empty($_POST["selectedDate"])){
+        $_SESSION["flash"]["danger"] = "Vous devez sélectionner une date";
+        
+        header("Location: planningTheorique.php");
+        exit();
+    }
     ?>
     
     <link rel="stylesheet" href="css/planning.css" />
@@ -28,8 +35,7 @@
             <!-- formulaire datepicker & salariés -->
             <form id="planningForm" action="planningTheorique.php" method="post" class="col-sm-6 col-md-4">
                 <?php require_once(includePath . "/planningForm.php"); ?>
-                
-                <button id="validationPlanningForm" name="validationPlanningFormTheorique" class="btn btn-block btn-outline-primary">Valider</button>
+                    <button name="validationPlanningFormTheorique" class="datepickerValidation btn btn-block btn-outline-primary">Valider</button>
             </form>
             <!-- /formulaire datepicker & salariés -->
             

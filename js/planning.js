@@ -18,8 +18,6 @@ $(function(){
             var type = $("#" + jour + " .type").val();
             $("#" + jourSemaineSuivante + " .type option[value=" + type + "]").prop("selected", true);
             
-            console.log(type);
-            
             jour++;
         }
     });

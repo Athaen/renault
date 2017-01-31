@@ -1,5 +1,5 @@
-<div id="yearMonthDatePicker" class="col-12" data-container="body" data-toggle="popover" data-placement="right" data-trigger="focus" data-html="true" data-content="<i class='fa fa-exclamation-triangle'></i> Vous devez sélectionner une date"></div>
-<input type="hidden" id="selectedDate" name="selectedDate"/>
+<div class="jsDatepicker col-12" data-date-start-view="1" data-date-min-view-mode="1" data-container="body" data-toggle="popover" data-placement="right" data-trigger="focus" data-html="true" data-content="<i class='fa fa-exclamation-triangle'></i> Vous devez sélectionner une date"></div>
+<input class="jsSelectedDate" type="hidden" name="selectedDate" value=""/>
 
 <div class="form-group col-12">
         <?php
@@ -9,7 +9,7 @@
         
         $services = $seManager->getList();
         
-        echo '<select id="selectMultiple" name="idSalarie" class="form-control" size="15" required>';
+        echo '<select id="selectMultiple" name="idSalarie" class="form-control datepickerSelect" size="15" required>';
         
         foreach($services as $service){
             

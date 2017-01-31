@@ -17,14 +17,14 @@ class heureManager{
         if(!empty($heure->getId())){
             $sql = $this->db->prepare('
                 UPDATE heure
-                SET idSalarie = :idSalarie, idTypeHeure = :idTypeHeure, datetime = :datetime, rt = :rt
+                SET idSalarie = :idSalarie, idTypeHeure = :idTypeHeure, datetime = :datetime, hr_ht_r = :hr_ht_r
                 WHERE id = :id
             ');
         }
         else{
             $sql = $this->db->prepare('
-                INSERT INTO heure(id, idSalarie, idTypeHeure, datetime, rt) 
-                VALUES(:id, :idSalarie, :idTypeHeure, :datetime, :rt)
+                INSERT INTO heure(id, idSalarie, idTypeHeure, datetime, hr_ht_r) 
+                VALUES(:id, :idSalarie, :idTypeHeure, :datetime, :hr_ht_r)
             ');
         }
         
@@ -32,15 +32,14 @@ class heureManager{
         $sql->bindValue(':idSalarie', $heure->getSalarie()->getId());
         $sql->bindValue(':idTypeHeure', $heure->getTypeHeure()->getId());
         $sql->bindValue(':datetime', $heure->getDatetime()->format("Y-m-d H:i:s"));
-        $sql->bindValue(':rt', $heure->getRt());
+        $sql->bindValue(':hr_ht_r', $heure->getHr_ht_r());
         
         $sql->execute();
     }
     
     public function delete(Heure $heure){
         $this->db->exec('
-            UPDATE heure
-            SET valide = 0
+            DELETE FROM heure
             WHERE id = ' . $heure->getId()
         );
     }
@@ -59,7 +58,7 @@ class heureManager{
         return new Heure($data);
     }
     
-    public function getBySalarieDate(Salarie $salarie, DateTime $datetime, $rt){
+    public function getBySalarieDate(Salarie $salarie, DateTime $datetime, $hr_ht_r){
         $annee = $datetime->format("Y");
         $mois = $datetime->format("m");
         $jour = $datetime->format("d");
@@ -72,7 +71,7 @@ class heureManager{
             AND YEAR(datetime) = $annee
             AND MONTH(datetime) = $mois
             AND DAY(datetime) = $jour
-            AND rt = '$rt'
+            AND hr_ht_r = '$hr_ht_r'
         ");
         $data = $sql->fetch(PDO::FETCH_ASSOC);
         
