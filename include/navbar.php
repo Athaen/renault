@@ -20,14 +20,14 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="report.php">Reports</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="heureTheorique.php">Heures théoriques</a>
+                        <a class="dropdown-item" href="arretHt.php">Heures théoriques</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Heures supplémentaires</a>
+                        <a class="dropdown-item" href="heureSupp.php">Heures supplémentaires</a>
                     </div>
                 </div>
                 <!-- /planning dropdown-->
 
-                <!-- gestion dropdown -->
+                <!-- administration dropdown -->
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Administration</a>
                     <div class="dropdown-menu">
@@ -36,9 +36,22 @@
                         <a class="dropdown-item" href="administrationService.php">Gestion des services</a>
                     </div>
                 </div>
-                <!-- /gestion dropdwn -->
+                <!-- /administration dropdwn -->
 
-                <a class="nav-item nav-link" href="#">Impression</span></a>
+                <!-- impression dropdown -->
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Impression</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="impressionHeureTheorique.php">Heures théoriques</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="impressionHeureReelle.php">Heures réelles</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Récapitulatifs</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">&Eacute;tats de sortis</a>
+                    </div>
+                </div>
+                <!-- /impression dropdwn -->
             </div>
             <!-- /navbar gauche -->
 

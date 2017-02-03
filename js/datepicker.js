@@ -17,12 +17,32 @@ $(function() {
     
     $(".jsDatepicker")
         .datepicker({
-            language: "fr",
+            language: "fr"
         })
         .on("changeDate", function() {
             $(this).next("input:hidden").val($(this).datepicker("getFormattedDate"));
         })
     ;
+    
+    
+    var date, day;    
+    $("#dayDatepicker")
+        .datepicker({
+            language: "fr",
+            maxViewMode : 1
+        })
+        .on("changeDate", function() {
+            date = $(this).datepicker("getFormattedDate");
+            day = parseInt($(this).datepicker("getFormattedDate").substring(0,2), 10);
+            
+            $(this).next("input:hidden").val(date);
+            $(this).val(day);
+        })
+        .on("change", function() {
+            $(this).val(day);
+        })
+    ;
+
 
 //    $(".datepickerValidation").click(function() {        
 //        if($(this).parent().parent().find("input:hidden").attr("value") == ""){

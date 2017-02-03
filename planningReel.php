@@ -46,7 +46,7 @@
                 <form action="process/planningTableForm.php" method="post">
                     <?php require_once(includePath . "/planningTable.php"); ?>
                     
-                    <button name='validationHeureReel' class='btn btn-block btn-outline-primary'>Valider les heures</button>
+                    <button name='validationHeureReel' class='btn btn-block btn-outline-primary'>Valider</button>
                 </form>
             </div>
             <?php } ?>

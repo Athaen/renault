@@ -1,12 +1,10 @@
 <?php
 
-class Heure{
+class ArretHt{
     private
         $id,
-        $salarie, // objet salarie
-        $typeHeure, // objet typeHeure
-        $datetime,
-        $hrHt
+        $datetime, // objet DateTime
+        $heure
     ;
     
     public function __construct($data){
@@ -24,29 +22,19 @@ class Heure{
     }
     
     public function getId(){ return $this->id; }
-    public function getSalarie(){ return $this->salarie; }
-    public function getTypeHeure(){ return $this->typeHeure; }
     public function getDatetime(){ return $this->datetime; }
-    public function getHrHt(){ return $this->hrHt; }
+    public function getHeure(){ return $this->heure; }
     
     public function setId($id){
         $this->id = $id;
-    }
-    
-    public function setSalarie(Salarie $salarie){
-        $this->salarie = $salarie;
-    }
-    
-    public function setTypeHeure(TypeHeure $typeHeure){
-        $this->typeHeure = $typeHeure;
     }
     
     public function setDatetime(DateTime $datetime){
         $this->datetime = $datetime;
     }
     
-    public function setHrHt($hrHt){
-        $this->hrHt = $hrHt;
+    public function setHeure($heure){
+        $this->heure = $heure;
     }
 }
 

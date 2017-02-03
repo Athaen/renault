@@ -7,11 +7,11 @@ authentificationRequise();
 if(isset($_POST["validationHeureTheorique"]) || isset($_POST["validationHeureReel"])){
 //  définit le type d'heure et la redirection a effectuer
     if(isset($_POST["validationHeureTheorique"])){
-        $hr_ht_r = "ht";
+        $hrHt = "ht";
         $location = "../planningTheorique";
     }
     elseif(isset($_POST["validationHeureReel"])){
-        $hr_ht_r = "hr";
+        $hrHt = "hr";
         $location = "../planningReel";
     }
 //  /définit le type d'heure et la redirection a effectuer
@@ -34,7 +34,7 @@ if(isset($_POST["validationHeureTheorique"]) || isset($_POST["validationHeureRee
                 "salarie" => $saManager->get($_POST["idSalarie"]),
                 "typeHeure" => $thManager->get($_POST["idTypeHeure"][$key]),
                 "datetime" => $datetime,
-                "hr_ht_r" => $hr_ht_r
+                "hrHt" => $hrHt
             ]);
             
             $hManager->persist($heure);

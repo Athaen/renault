@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="css/datePicker.css" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
     
-    <title>Reports</title>
+    <title>Impression - Heures théoriques</title>
 </head>
 
 <body>
@@ -32,7 +32,7 @@
         <!-- row -->
         <div class="row">
             <!-- formulaire datepicker & services -->
-            <form id="reportForm" action="report.php" method="post" class="col-sm-6 col-md-4">
+            <form id="reportForm" action="report.php" method="post" class="col-12">
                 <!-- row -->
                 <div class="row">
                     <!-- datepicker -->
@@ -67,71 +67,6 @@
                 <!-- /row -->
             </form>
             <!-- /formulaire datepicker & services -->
-            
-            <!-- if service sélectionné -->
-            <?php
-                if(isset($_POST["validationReportForm"])){
-                    $saManager = new SalarieManager($db);
-                    $seManager = new ServiceManager($db);
-                    $rManager = new ReportManager($db);
-                    
-                    $service = $seManager->get($_POST["idService"]);
-                    
-                    $salaries = $saManager->getListByService($service);
-            ?>
-            
-            <!-- form report -->
-            <form class="col-sm-6 col-md-8" action="process/reportForm.php" method="post">
-                <input type="hidden" name="selectedDate" value="<?php echo $_POST["selectedDate"]; ?>"/>
-                
-                <table class='cadre table table-sm table-striped table-hover'>
-                    <thead>
-                        <tr>
-                            <th>Salarié</th>
-                            <th>Report</th>
-                        </tr>
-                    </thead>
-                    
-                    <tbody>
-                        <?php 
-                            foreach($salaries as $salarie){
-                                $datetime = new DateTime($_POST["selectedDate"] ." 00:00:00");
-                                $report = $rManager->getBySalarieDate($salarie, $datetime);
-                                
-                                if($report){
-                                    $reportValue = $report->getHeure();
-                                    $idValue = $report->getId();
-                                }
-                                else{
-                                    $reportValue = null;
-                                    $idValue = null;
-                                }
-                        ?>
-                        
-                        <input type="hidden" name="salarie[]" value="<?php echo $salarie->getId(); ?>"/>
-                        <input type="hidden" name="id[]" value="<?php echo $idValue; ?>"/>
-                        
-                        <tr>
-                            <td>
-                                <?php echo mb_strtoupper($salarie->getNom(), "UTF-8") ." ". ucfirst($salarie->getPrenom()); ?>
-                            </td>
-                            <td>
-                                <div class="input-group justify-content-center">
-                                    <input class="text-center" name="report[]" type="number" class="form-control" min="0" max="9999" step="1" value="<?php echo $reportValue; ?>">
-                                    <span class="input-group-addon">h</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
-                
-                <button name="validationReportTable" class="btn btn-block btn-outline-primary">Valider</button>
-            </form>
-            <!-- form report -->
-            
-            <?php } ?>
-            <!-- /if service sélectionné -->
         </div>
         <!-- /row -->
     </div>

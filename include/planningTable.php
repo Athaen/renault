@@ -34,13 +34,13 @@ for($i = 1; $i <= $diff; $i++){
     $salarie = $saManager->get($_POST["idSalarie"]);
     
     if(isset($_POST["validationPlanningFormTheorique"])){
-        $hr_ht_r = "ht";
+        $hrHt = "ht";
     }
     elseif(isset($_POST["validationPlanningFormReel"])){
-        $hr_ht_r = "hr";
+        $hrHt = "hr";
     }
     
-    $heure = $hManager->getBySalarieDate($salarie, $selectedDate, $hr_ht_r);
+    $heure = $hManager->getBySalarieDate($salarie, $selectedDate, $hrHt);
     
     if($heure){
         $id = $heure->getId();

@@ -2,7 +2,7 @@
 
 require_once(classePath . "/heure.php");
 
-class heureManager{
+class HeureManager{
     private $db;
     
     public function __construct($db){
@@ -17,14 +17,14 @@ class heureManager{
         if(!empty($heure->getId())){
             $sql = $this->db->prepare('
                 UPDATE heure
-                SET idSalarie = :idSalarie, idTypeHeure = :idTypeHeure, datetime = :datetime, hr_ht_r = :hr_ht_r
+                SET idSalarie = :idSalarie, idTypeHeure = :idTypeHeure, datetime = :datetime, hrHt = :hrHt
                 WHERE id = :id
             ');
         }
         else{
             $sql = $this->db->prepare('
-                INSERT INTO heure(id, idSalarie, idTypeHeure, datetime, hr_ht_r) 
-                VALUES(:id, :idSalarie, :idTypeHeure, :datetime, :hr_ht_r)
+                INSERT INTO heure(id, idSalarie, idTypeHeure, datetime, hrHt) 
+                VALUES(:id, :idSalarie, :idTypeHeure, :datetime, :hrHt)
             ');
         }
         
@@ -32,7 +32,7 @@ class heureManager{
         $sql->bindValue(':idSalarie', $heure->getSalarie()->getId());
         $sql->bindValue(':idTypeHeure', $heure->getTypeHeure()->getId());
         $sql->bindValue(':datetime', $heure->getDatetime()->format("Y-m-d H:i:s"));
-        $sql->bindValue(':hr_ht_r', $heure->getHr_ht_r());
+        $sql->bindValue(':hrHt', $heure->getHrHt());
         
         $sql->execute();
     }
@@ -58,7 +58,7 @@ class heureManager{
         return new Heure($data);
     }
     
-    public function getBySalarieDate(Salarie $salarie, DateTime $datetime, $hr_ht_r){
+    public function getBySalarieDate(Salarie $salarie, DateTime $datetime, $hrHt){
         $annee = $datetime->format("Y");
         $mois = $datetime->format("m");
         $jour = $datetime->format("d");
@@ -71,7 +71,7 @@ class heureManager{
             AND YEAR(datetime) = $annee
             AND MONTH(datetime) = $mois
             AND DAY(datetime) = $jour
-            AND hr_ht_r = '$hr_ht_r'
+            AND hrHt = '$hrHt'
         ");
         $data = $sql->fetch(PDO::FETCH_ASSOC);
         
