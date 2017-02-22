@@ -158,7 +158,7 @@ class SalarieManager{
                 }
             }
             
-            if($salarie->getNom() == strtolower($nom) && $salarie->getMdp() == $mdp && $acces){
+            if(strtolower($salarie->getNom()) == strtolower($nom) && $salarie->getMdp() == $mdp && $acces){
                 return $salarie;
             }
         }

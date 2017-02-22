@@ -3,8 +3,7 @@
 class ArretHt{
     private
         $id,
-        $datetime, // objet DateTime
-        $heure
+        $datetime // objet DateTime
     ;
     
     public function __construct($data){
@@ -23,7 +22,6 @@ class ArretHt{
     
     public function getId(){ return $this->id; }
     public function getDatetime(){ return $this->datetime; }
-    public function getHeure(){ return $this->heure; }
     
     public function setId($id){
         $this->id = $id;
@@ -31,10 +29,6 @@ class ArretHt{
     
     public function setDatetime(DateTime $datetime){
         $this->datetime = $datetime;
-    }
-    
-    public function setHeure($heure){
-        $this->heure = $heure;
     }
 }
 

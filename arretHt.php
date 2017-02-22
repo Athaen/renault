@@ -71,13 +71,11 @@
                 
                 if($aht){
                     $idValue = $aht->getId();
-                    $heureValue = $aht->getHeure();
                     $dayValue =  $aht->getDatetime()->format("d");
                     $selectedDayValue = $aht->getDatetime()->format("d/m/Y");
                 }
                 else{
                     $idValue = null;
-                    $heureValue = null;
                     $dayValue = null;
                     $selectedDayValue = null;
                 }
@@ -86,8 +84,6 @@
             <!-- form heure theorique -->
             <form class="col-sm-6 col-md-8" action="process/arretHtForm.php" method="post">
                 <input type="hidden" name="id" value="<?php echo $idValue; ?>"/>
-                
-                <input class="form-group form-control" type="number" name="heureTheorique" placeholder="Heures théoriques" min="0" max="999" step="1" value="<?php echo $heureValue; ?>" required/>
                 
                 <div class="form-group input-group">
                     <span class="input-group-addon">Arrêt le</span>

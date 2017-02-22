@@ -14,13 +14,19 @@ $.fn.datepicker.dates.fr = {
 $.fn.tagName = function() { return this.get(0).tagName.toLowerCase(); }
 
 $(function() {
-    
     $(".jsDatepicker")
         .datepicker({
             language: "fr"
         })
         .on("changeDate", function() {
-            $(this).next("input:hidden").val($(this).datepicker("getFormattedDate"));
+            $(this).next("input:hidden[name='selectedDate']").val($(this).datepicker("getFormattedDate"));
+        })
+    ;
+    
+    $("#rangeDatepicker")
+        .datepicker({
+            language: "fr",
+            format: "dd/mm/yyyy"
         })
     ;
     
@@ -35,30 +41,12 @@ $(function() {
             date = $(this).datepicker("getFormattedDate");
             day = parseInt($(this).datepicker("getFormattedDate").substring(0,2), 10);
             
-            $(this).next("input:hidden").val(date);
+            $(this).next("input:hidden[name='selectedDay']").val(date);
             $(this).val(day);
         })
         .on("change", function() {
             $(this).val(day);
         })
     ;
-
-
-//    $(".datepickerValidation").click(function() {        
-//        if($(this).parent().parent().find("input:hidden").attr("value") == ""){
-//            $(".jsDatepicker").popover("show");
-//            
-//            $(".jsDatepicker").on("shown.bs.popover", function(){
-//                $("body").one("click", function(){
-//                    $(".jsDatepicker").popover("hide");
-//                });
-//            });
-//            
-//            return false; 
-//        }
-//        else{
-//            $(this).submit();
-//        }        
-//    });
 });
 

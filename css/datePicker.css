@@ -23,3 +23,17 @@
     background: #0275d8 !important;
     border-color: #0275d8 !important;
 }
+
+/* datepicker impression */
+
+@media(min-width: 767px){
+    .datepickerImpression .year{
+        width: 6.3% !important;
+    }
+}
+
+@media (max-width: 767px){
+    .datepickerImpression .year{
+        width: 14.6% !important;
+    }
+}

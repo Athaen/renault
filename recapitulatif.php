@@ -7,13 +7,20 @@
     require_once(includePath . "/head.php");
     
     authentificationRequise();
+    
+    if(isset($_POST["validationReportForm"]) && empty($_POST["selectedDate"])){
+        $_SESSION["flash"]["danger"] = "Vous devez sélectionner une date";
+        
+        header("Location: report.php");
+        exit();
+    }
     ?>
     
     <link rel="stylesheet" href="css/datePicker.css" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
     <link rel="stylesheet" href="css/multiple-select.css" />
     
-    <title>Impression - Heures théoriques</title>
+    <title>Impression - Récapitulatif annuel</title>
 </head>
 
 <body>
@@ -26,7 +33,7 @@
         <!-- row -->
         <div class="row">
             <!-- formulaire datepicker & services -->
-            <form action="process/impressionForm.php" target="_blank" method="post" class="col-12" id="bootstrapSelectForm">
+            <form action="process/impressionRecapitulatifForm.php" target="_blank" method="post" class="col-12">
                 <!-- row -->
                 <div class="row">
                     <!-- datepicker -->
@@ -38,35 +45,24 @@
                 
                 <!-- form-group -->
                 <div class="form-group row">
-                    <!-- multipleselect mois -->
-                    <div class="col-6">
-                        <select id="selectMois" name="mois[]" multiple>
-                            <option value="01">Janvier</option>
-                            <option value="02">Février</option>
-                            <option value="03">Mars</option>
-                            <option value="04">Avril</option>
-                            <option value="05">Mai</option>
-                            <option value="06">Juin</option>
-                            <option value="07">Juillet</option>
-                            <option value="08">Août</option>
-                            <option value="09">Septembre</option>
-                            <option value="10">Octobre</option>
-                            <option value="11">Novembre</option>
-                            <option value="12">Décembre</option>
-                        </select>
-                    </div>
-                    <!-- /multipleselect mois -->
                     
                     <!-- multipleselect service -->
-                    <div class="col-6">
-                        <select id="selectService" name="service[]" multiple>
+                    <div class="col-12">
+                        <select id="selectSalarie" name="salarie[]" multiple>
                             <?php
                             
                             $seManager = new ServiceManager($db);
+                            $saManager = new SalarieManager($db);
                             
                             foreach($seManager->getList() as $service){
                                 $i++;
-                                echo "<option value='". $service->getId() ."'>". mb_strtoupper($service->getLibelle(), "utf-8") ."</option>";
+                                echo "<optgroup label='". mb_strtoupper($service->getLibelle(), "utf-8") ."'>";
+                                
+                                foreach($saManager->getListByService($service) as $salarie){
+                                    echo "<option value='". $salarie->getId() ."'>". mb_strtoupper($salarie->getNom(), "utf-8") ." ". ucfirst($salarie->getPrenom()) ."</option>";
+                                }
+                                
+                                echo "</optgroup>";
                             }
                             ?>
                         </select>
@@ -75,7 +71,7 @@
                 </div>
                 <!-- /form-group -->
                 
-                <button id="reload" name="validationImpressionHtForm" class="btn btn-block btn-outline-primary">Valider</button>
+                <button id="reload" name="validationRecapitulatifForm" target="_blank" class="btn btn-block btn-outline-primary">Valider</button>
             </form>
             <!-- /formulaire datepicker & services -->
         </div>
@@ -97,21 +93,13 @@
                 setTimeout("location.reload(true)", 100);
             });
             
-            $('#selectMois').multipleSelect({
+            $('#selectSalarie').multipleSelect({
                 maxHeight: 300,
+                filter: true,
                 multiple: true,
-                placeholder: "Sélectionnez un/plusieurs mois",
-                allSelected: "Tous les mois ont été sélectionnés",
-                minimumCountSelected: 6,
-                countSelected: "# mois sélectionnés"
-            });
-            
-            $('#selectService').multipleSelect({
-                maxHeight: 300,
-                multiple: true,
-                placeholder: "Sélectionnez un/plusieurs services",
+                placeholder: "Sélectionnez un ou plusieurs service(s)/salarié(s)",
                 allSelected: "Tous les services ont été sélectionnés",
-                minimumCountSelected: 6,
+                minimumCountSelected: 1,
                 countSelected: "# services sélectionnés"
             });
             

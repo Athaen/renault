@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 24 Janvier 2017 à 18:04
+-- Généré le :  Jeu 09 Février 2017 à 14:08
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -19,6 +19,18 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `renault`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `arretht`
+--
+
+CREATE TABLE `arretht` (
+  `id` int(11) NOT NULL,
+  `datetime` datetime NOT NULL,
+  `heure` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -51,7 +63,7 @@ CREATE TABLE `heure` (
   `idSalarie` int(11) NOT NULL,
   `idTypeHeure` int(11) NOT NULL,
   `datetime` datetime NOT NULL,
-  `rt` char(1) COLLATE utf8_bin NOT NULL,
+  `hrHt` varchar(2) CHARACTER SET utf8 NOT NULL,
   `valide` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -59,48 +71,43 @@ CREATE TABLE `heure` (
 -- Contenu de la table `heure`
 --
 
-INSERT INTO `heure` (`id`, `idSalarie`, `idTypeHeure`, `datetime`, `rt`, `valide`) VALUES
-(21, 2, 3, '2017-01-01 02:05:00', 't', 1),
-(20, 1, 5, '2017-01-07 00:20:00', 't', 1),
-(19, 1, 5, '2017-01-06 05:00:00', 't', 1),
-(18, 1, 10, '2017-01-05 08:00:00', 't', 1),
-(17, 1, 7, '2017-01-04 07:59:00', 't', 1),
-(16, 1, 8, '2017-01-03 06:00:00', 't', 1),
-(15, 1, 1, '2017-01-01 05:04:00', 't', 1),
-(14, 1, 4, '2017-01-02 05:02:00', 't', 1),
-(22, 1, 10, '2017-01-01 04:02:00', 'r', 1),
-(23, 1, 4, '2017-01-09 05:02:00', 't', 1),
-(24, 1, 8, '2017-01-10 06:00:00', 't', 1),
-(25, 1, 7, '2017-01-11 07:59:00', 't', 1),
-(26, 1, 10, '2017-01-12 08:00:00', 't', 1),
-(27, 1, 5, '2017-01-13 05:00:00', 't', 1),
-(28, 1, 5, '2017-01-14 00:20:00', 't', 1),
-(29, 1, 4, '2017-01-16 05:02:00', 't', 1),
-(30, 1, 8, '2017-01-17 06:00:00', 't', 1),
-(31, 1, 7, '2017-01-18 07:59:00', 't', 1),
-(32, 1, 10, '2017-01-19 08:00:00', 't', 1),
-(33, 1, 5, '2017-01-20 05:00:00', 't', 1),
-(34, 1, 5, '2017-01-21 00:20:00', 't', 1),
-(35, 1, 4, '2017-01-23 05:02:00', 't', 1),
-(36, 1, 8, '2017-01-24 06:00:00', 't', 1),
-(37, 1, 7, '2017-01-25 07:59:00', 't', 1),
-(38, 1, 10, '2017-01-26 08:00:00', 't', 1),
-(39, 1, 5, '2017-01-27 05:00:00', 't', 1),
-(40, 1, 5, '2017-01-28 00:20:00', 't', 1),
-(41, 1, 1, '2017-01-02 01:01:00', 'r', 1),
-(42, 1, 2, '2017-01-03 02:02:00', 'r', 1),
-(43, 1, 3, '2017-01-04 03:03:00', 'r', 1),
-(44, 1, 4, '2017-01-05 04:04:00', 'r', 1),
-(45, 1, 10, '2017-01-06 05:05:00', 'r', 1),
-(46, 1, 9, '2017-01-07 06:06:00', 'r', 1),
-(47, 1, 6, '2017-01-08 07:07:00', 'r', 1),
-(48, 1, 1, '2017-01-09 01:01:00', 'r', 1),
-(49, 1, 2, '2017-01-10 02:02:00', 'r', 1),
-(50, 1, 3, '2017-01-11 03:03:00', 'r', 1),
-(51, 1, 4, '2017-01-12 04:04:00', 'r', 1),
-(52, 1, 10, '2017-01-13 05:05:00', 'r', 1),
-(53, 1, 9, '2017-01-14 06:06:00', 'r', 1),
-(54, 1, 6, '2017-01-15 07:07:00', 'r', 1);
+INSERT INTO `heure` (`id`, `idSalarie`, `idTypeHeure`, `datetime`, `hrHt`, `valide`) VALUES
+(1, 1, 3, '2017-09-01 05:21:00', 'ht', 1),
+(2, 1, 4, '2017-09-02 04:00:00', 'ht', 1),
+(3, 1, 2, '2017-09-06 00:00:00', 'ht', 1),
+(4, 1, 8, '2017-09-07 03:00:00', 'ht', 1),
+(5, 1, 10, '2017-09-09 00:00:00', 'ht', 1),
+(6, 1, 6, '2017-09-04 04:00:00', 'ht', 1),
+(7, 1, 7, '2017-09-05 05:54:00', 'ht', 1),
+(8, 1, 1, '2017-09-12 02:05:00', 'ht', 1),
+(9, 1, 5, '2017-09-03 00:00:00', 'ht', 1),
+(10, 1, 9, '2017-09-08 00:00:00', 'ht', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `heuresupp`
+--
+
+CREATE TABLE `heuresupp` (
+  `id` int(11) NOT NULL,
+  `idSalarie` int(11) NOT NULL,
+  `datetime` datetime NOT NULL,
+  `heure` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `report`
+--
+
+CREATE TABLE `report` (
+  `id` int(11) NOT NULL,
+  `idSalarie` int(11) NOT NULL,
+  `datetime` datetime NOT NULL,
+  `heure` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -122,7 +129,7 @@ CREATE TABLE `salarie` (
 --
 
 INSERT INTO `salarie` (`id`, `idService`, `nom`, `prenom`, `mdp`, `valide`) VALUES
-(1, 1, 'gille', 'alexandre', '', 1),
+(1, 1, 'Bassot', 'Michael', 'basmic', 1),
 (2, 1, 'deves', 'thierry', 'devthi', 1),
 (3, 1, 'géraudie', 'guy', 'gerguy', 1),
 (4, 1, 'gallerne', 'jean-luc', 'galjea', 1),
@@ -208,9 +215,9 @@ CREATE TABLE `service` (
 --
 
 INSERT INTO `service` (`id`, `libelle`, `valide`) VALUES
-(1, 'atelier', 1),
-(2, 'carrosserie', 1),
-(3, 'comptabilité', 1),
+(1, 'Atelier', 1),
+(2, 'Carrosserie', 1),
+(3, 'Comptabilité', 1),
 (4, 'mpr', 1),
 (5, 'renault minute', 1),
 (6, 'vn', 1),
@@ -253,6 +260,12 @@ INSERT INTO `typeheure` (`id`, `libelle`, `valide`) VALUES
 --
 
 --
+-- Index pour la table `arretht`
+--
+ALTER TABLE `arretht`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Index pour la table `autorisation`
 --
 ALTER TABLE `autorisation`
@@ -262,6 +275,18 @@ ALTER TABLE `autorisation`
 -- Index pour la table `heure`
 --
 ALTER TABLE `heure`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `heuresupp`
+--
+ALTER TABLE `heuresupp`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `report`
+--
+ALTER TABLE `report`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -294,25 +319,40 @@ ALTER TABLE `typeheure`
 --
 
 --
+-- AUTO_INCREMENT pour la table `arretht`
+--
+ALTER TABLE `arretht`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT pour la table `autorisation`
 --
 ALTER TABLE `autorisation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `heure`
 --
 ALTER TABLE `heure`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT pour la table `heuresupp`
+--
+ALTER TABLE `heuresupp`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT pour la table `report`
+--
+ALTER TABLE `report`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 --
 -- AUTO_INCREMENT pour la table `salarie`
 --
 ALTER TABLE `salarie`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 --
 -- AUTO_INCREMENT pour la table `salarie_autorisation`
 --
 ALTER TABLE `salarie_autorisation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT pour la table `service`
 --
@@ -322,7 +362,7 @@ ALTER TABLE `service`
 -- AUTO_INCREMENT pour la table `typeheure`
 --
 ALTER TABLE `typeheure`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

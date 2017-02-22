@@ -17,20 +17,21 @@ class ArretHtManager{
         if(!empty($arretHt->getId())){
             $sql = $this->db->prepare('
                 UPDATE arretht
-                SET datetime = :datetime, heure = :heure
+                SET datetime = :datetime
                 WHERE id = :id
             ');
         }
         else{
             $sql = $this->db->prepare('
-                INSERT INTO arretht(id, datetime, heure) 
-                VALUES(:id, :datetime, :heure)
+                INSERT INTO arretht(id, datetime) 
+                VALUES(:id, :datetime)
             ');
         }
         
-        $sql->bindValue(':id', $arretHt->getId());
+        ($arretHt->getId()) ? $idValue = $arretHt->getId() : null;
+        
+        $sql->bindValue(':id', $idValue);
         $sql->bindValue(':datetime', $arretHt->getDatetime()->format("Y-m-d H:i:s"));
-        $sql->bindValue(':heure', $arretHt->getHeure());
         
         $sql->execute();
     }

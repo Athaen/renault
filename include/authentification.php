@@ -18,9 +18,6 @@ if(isset($_POST["nom"]) && isset($_POST["mdp"])){
     }
     else{
         $_SESSION["flash"]["danger"] = "Identifiant ou mot de passe invalide";
-        
-        header("Location: index.php");
-        exit();
     }
 }
 

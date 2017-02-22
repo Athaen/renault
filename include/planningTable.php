@@ -60,7 +60,7 @@ for($i = 1; $i <= $diff; $i++){
     $jourNum = strftime("%w", $selectedDate->getTimestamp());
     $numero = strftime("%#d", $selectedDate->getTimestamp());
     $mois = utf8_encode(strftime("%B", $selectedDate->getTimestamp()));
-    $annee = utf8_encode(strftime("%Y", $selectedDate->getTimestamp()));
+    $annee = strftime("%Y", $selectedDate->getTimestamp());
 ?>
         <tr <?php if($jourNum == 0 || $jourNum == 6){ echo "class='planningBg'"; } echo "id='$i'";?>>
             <td>

@@ -56,13 +56,15 @@ class HeureSuppManager{
         return new HeureSupp($data);
     }
     
-    public function getBySalarieDate(Salarie $salarie, DateTime $datetime){
+    public function getBySalarieMonth(Salarie $salarie, DateTime $datetime){
+        $mois = $datetime->format("m");
         $annee = $datetime->format("Y");
         
         $sql = $this->db->query("
             SELECT *
             FROM heureSupp
             WHERE idSalarie = ".$salarie->getId()."
+            AND MONTH(datetime) = $mois
             AND YEAR(datetime) = $annee
         ");
         $data = $sql->fetch(PDO::FETCH_ASSOC);

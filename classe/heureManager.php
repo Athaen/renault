@@ -108,7 +108,63 @@ class HeureManager{
         }
         
         return $list;
-    }    
+    }
+    
+    public function getListBySalarieMonth($salarie, $datetime, $hrHt){
+        $list = []  ;        
+        $annee = $datetime->format("Y");
+        $mois = $datetime->format("m");
+        $jour = $datetime->format("d");
+        
+        $sql = $this->db->query("
+            SELECT *
+            FROM heure
+            WHERE valide = 1            
+            AND idSalarie = ".$salarie->getId()."
+            AND YEAR(datetime) = $annee
+            AND MONTH(datetime) = $mois
+            AND hrHt = '$hrHt'
+            ORDER BY datetime ");
+        
+        $saManager = new SalarieManager($this->db);
+        $thManager = new TypeHeureManager($this->db);
+        
+        while($data = $sql->fetch(PDO::FETCH_ASSOC)){
+            $data["datetime"] = new DateTime($data["datetime"]);
+            $data["salarie"] = $saManager->get($data["idSalarie"]);
+            $data["typeHeure"] = $thManager->get($data["idTypeHeure"]);
+            
+            $list[] = new Heure($data);
+        }
+        
+        return $list;
+    }
+    
+    public function getListBySalarieTypeRange($salarie, $typeHeure, $datetimeStart, $datetimeEnd){
+        $saManager = new SalarieManager($this->db);
+        $thManager = new TypeHeureManager($this->db);
+        $list = [];
+        
+        $sql = $this->db->query("
+            SELECT *
+            FROM heure
+            WHERE  datetime BETWEEN '". $datetimeStart->format("Y-m-d") ." 00:00:00' AND '". $datetimeEnd->format("Y-m-d") ." 23:59:59.999'
+            AND idSalarie = ". $salarie->getId() ."
+            AND idTypeHeure = ". $typeHeure->getId() ."
+            AND hrHt = 'hr'
+            ORDER BY datetime
+        ");
+        
+        while($data = $sql->fetch(PDO::FETCH_ASSOC)){
+            $data["datetime"] = new DateTime($data["datetime"]);
+            $data["salarie"] = $saManager->get($data["idSalarie"]);
+            $data["typeHeure"] = $thManager->get($data["idTypeHeure"]);
+            
+            $list[] = new Heure($data);
+        }
+        
+        return $list;
+    }
 }
 
 ?>

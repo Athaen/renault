@@ -7,13 +7,12 @@
     require_once(includePath . "/head.php");
     
     authentificationRequise();
-    ?>
     
     <link rel="stylesheet" href="css/datePicker.css" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
     <link rel="stylesheet" href="css/multiple-select.css" />
     
-    <title>Impression - Heures théoriques</title>
+    <title>Impression - Heures réelles</title>
 </head>
 
 <body>
@@ -75,7 +74,7 @@
                 </div>
                 <!-- /form-group -->
                 
-                <button id="reload" name="validationImpressionHtForm" class="btn btn-block btn-outline-primary">Valider</button>
+                <button id="reload" name="validationImpressionHrForm" target="_blank" class="btn btn-block btn-outline-primary">Valider</button>
             </form>
             <!-- /formulaire datepicker & services -->
         </div>

@@ -99,8 +99,8 @@
                     <tbody>
                         <?php 
                             foreach($salaries as $salarie){
-                                $datetime = new DateTime($_POST["selectedDate"] ." 00:00:00");
-                                $heureSupp = $hsManager->getBySalarieDate($salarie, $datetime);
+                                $datetime = DateTime::createFromFormat("d/m/Y H:i:s", $_POST["selectedDate"] ." 00:00:00");
+                                $heureSupp = $hsManager->getBySalarieMonth($salarie, $datetime);
                                 
                                 if($heureSupp){
                                     $heureSuppValue = $heureSupp->getHeure();
